@@ -18,19 +18,24 @@ namespace UniRxSample
 
     public sealed class DisplayLogObserver : IObserver<string>
     {
+        private int _id;
+        public DisplayLogObserver(int id = 1)
+        {
+            _id = id;
+        }
         public void OnCompleted()
         {
-            Debug.Log("ログの発行が完了しました。");
+            Debug.Log($"Observer{_id}のログの発行が完了しました。");
         }
 
         public void OnError(Exception error)
         {
-            Debug.Log($"例外が発生しました:{error}");
+            Debug.Log($"Observer{_id}に例外が発生しました:{error}");
         }
 
         public void OnNext(string value)
         {
-            Debug.Log($"メッセージが発行されました：{value}");
+            Debug.Log($"Observer{_id}からメッセージが発行されました：{value}");
         }
     }
 }
